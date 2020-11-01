@@ -1,5 +1,12 @@
 module LazyUtils
 
-# Write your package code here.
+export 
+    # reexport
+    get_environments,
+    get_projectfiles
+
+
+include("PkgUtils.jl")
+using .PkgUtils
 
 end
