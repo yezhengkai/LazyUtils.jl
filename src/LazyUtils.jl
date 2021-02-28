@@ -1,10 +1,10 @@
 module LazyUtils
 
-export 
+export
     # reexport
     get_environments,
-    get_projectfiles
-
+    get_projectfiles,
+    get_pkg_version
 
 include("PkgUtils.jl")
 using .PkgUtils
