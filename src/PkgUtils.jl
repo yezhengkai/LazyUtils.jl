@@ -10,7 +10,7 @@ export get_environments, get_projectfiles, get_pkg_version
 pkgdir(depot=Pkg.depots1()) = joinpath(depot, "packages")
 const MANIFEST_USAGE = joinpath(Pkg.logdir(), "manifest_usage.toml")
 
-function get_environments()::Array{Union{Nothing, String}, 1}
+function get_environments()::Union{Nothing, Array{String, 1}}
     try
         _mani = TOML.parsefile(MANIFEST_USAGE)
         _mani = collect(keys(_mani))
@@ -38,12 +38,12 @@ function findprojectfile(dir::Union{Nothing, AbstractString}=pwd())
         old, dir = dir, dirname(dir)
         dir == old && break
     end
-    @warn "Could not find find a project file by recursively checking " *
+    @warn "Could not find a project file by recursively checking " *
           "given `path` and its parents. Returning `nothing` instead."
     return nothing
 end
 
-function get_projectfiles()::Array{Union{Nothing, String}, 1}
+function get_projectfiles()::Union{Nothing, Array{String, 1}}
     envpath = get_environments()
     return findprojectfile.(envpath)
 end
@@ -58,7 +58,7 @@ function get_pkg_version(name::AbstractString)
             _.version
         end
     catch
-        @warn "The standard library does not have a version number. Return nothing."
+        @warn "The package is not a dependency of the current environment. Return nothing."
         return nothing
     end
 end
