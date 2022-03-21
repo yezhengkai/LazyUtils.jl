@@ -1,3 +1,8 @@
+module ArrayUtils
+
+export ndgrid, meshgrid
+
+# ndgrid and meshgrid are rewritten from https://github.com/JuliaAttic/Examples/blob/master/ndgrid.jl
 ndgrid(v::AbstractVector) = copy(v)
 
 function ndgrid(v1::AbstractVector{T}, v2::AbstractVector{T}) where T
@@ -9,19 +14,19 @@ end
 
 function ndgrid_fill(a, v, s, snext)
     for j = 1:length(a)
-        a[j] = v[div(rem(j-1, snext), s)+1]
+        a[j] = v[div(rem(j - 1, snext), s) + 1]
     end
 end
 
 function ndgrid(vs::AbstractVector{T}...) where T
     n = length(vs)
     sz = map(length, vs)
-    out = ntuple(i->Array{T}(uninitialized, sz), n)
+    out = ntuple(i -> Array{T}(undef, sz), n)
     s = 1
-    for i=1:n
+    for i in 1:n
         a = out[i]::Array
         v = vs[i]
-        snext = s*size(a,i)
+        snext = s * size(a, i)
         ndgrid_fill(a, v, s, snext)
         s = snext
     end
@@ -47,4 +52,6 @@ function meshgrid(vx::AbstractVector{T}, vy::AbstractVector{T},
     on = fill(1, n)
     oo = fill(1, o)
     (vx[om, :, oo], vy[:, on, oo], vz[om, on, :])
+end
+
 end
