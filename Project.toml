@@ -1,6 +1,6 @@
 name = "LazyUtils"
 uuid = "23a0ff22-9ace-4565-9386-b2cfba63fb2e"
-authors = ["Zheng-Kai Yeh <supon3060@gmail.com> and contributors"]
+authors = ["Zheng-Kai Ye <supon3060@gmail.com> and contributors"]
 version = "0.1.0"
 
 [deps]
@@ -9,7 +9,7 @@ Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
 
 [compat]
-TOML = "1.0"
+Chain = "0.4.4"
 julia = "1.5"
 
 [extras]
