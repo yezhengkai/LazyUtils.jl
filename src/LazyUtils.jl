@@ -1,12 +1,14 @@
 module LazyUtils
 
-export
-    # reexport
-    get_environments,
+export get_environments,
     get_projectfiles,
-    get_pkg_version
+    get_pkg_version,
+    ndgrid,
+    meshgrid
 
 include("PkgUtils.jl")
+include("ArrayUtils.jl")
 using .PkgUtils
+using .ArrayUtils
 
 end

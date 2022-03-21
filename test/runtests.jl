@@ -11,6 +11,12 @@ using Pkg
         @test any(occursin.(environment, environments)) || environments === nothing
         @test any(occursin.(projectfile, projectfiles)) || projectfiles === nothing
         @test get_pkg_version("Test") === nothing
-        @test get_pkg_version("TOML").major == 1
+        @test Int(get_pkg_version("LazyUtils").major) == 0
+    end
+
+    @testset "ArrayUtils" begin
+        v1 = [1:2]
+        v2 = [2:4]
+        @test ndgrid(v1) == v1
     end
 end
